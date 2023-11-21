@@ -1,4 +1,12 @@
 # COCL-App
+
+# COCL-PVwatts
+Custom pvwattas API based on NREL PVwatts
+
+- [x] Dash 환경 구축
+- [ ] COCL-PVWatts(생산량) 내용 대시보드에 추가하기  
+- [ ] COCL-PM(소비량) 내용 대시보드에 추가하기.
+- [ ] 스케쥴링 알고리즘 시각화
 Dashboard that provides comprehensive information on COCL
 ![image](https://github.com/Prcnsi/COCL-App/assets/86015194/5caf584a-8733-4708-8345-12c26df4d322)
 
