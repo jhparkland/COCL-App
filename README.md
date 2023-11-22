@@ -8,7 +8,6 @@ Custom pvwattas API based on NREL PVwatts
 - [ ] COCL-PM(소비량) 내용 대시보드에 추가하기.
 - [ ] 스케쥴링 알고리즘 시각화
 Dashboard that provides comprehensive information on COCL
-![image](https://github.com/Prcnsi/COCL-App/assets/86015194/5caf584a-8733-4708-8345-12c26df4d322)
 
 ## 프로젝트 목표
 Streamlit 혹은 Dash 등의 lib를 이용하여 강의별 탄소발자국 정보( 강의실, 강의명, 현재시간, 전력사용 정보, 탄소 배출 정보 등)와 캠퍼스 옥상에서 생산되는 전력량을 대응하여 표현한 대시보드 앱을 개발합니다.
