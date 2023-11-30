@@ -11,6 +11,7 @@ Streamlit 혹은 Dash 등의 lib를 이용하여 강의별 탄소발자국 정�
 - 동아대학교 승학캠퍼스 옥상에서 건물별 **태양광 발전량 예측** 시각화
 - 캠퍼스 옥상에서 생산되는 전략과 강의별
 - 누적 탄소발자국 정보 총집계
+
 ![image](https://github.com/Prcnsi/COCL-App/assets/86015194/9ef8664a-5ade-4457-83cd-2dbc4bdc4932)
 
 <br><br>
