@@ -1,9 +1,9 @@
 # COCL-App
 
 - [x] Dash 환경 구축
-- [ ] COCL-PVWatts(생산량) 내용 대시보드에 추가하기  
-- [ ] COCL-PM(소비량) 내용 대시보드에 추가하기.
-- [ ] 스케쥴링 알고리즘 시각화
+- [x] COCL-PVWatts(생산량) 내용 대시보드에 추가하기  
+- [x] COCL-PM(소비량) 내용 대시보드에 추가하기.
+- [x] 스케쥴링 알고리즘 시각화
 Dashboard that provides comprehensive information on COCL
 
 ## 프로젝트 목표
