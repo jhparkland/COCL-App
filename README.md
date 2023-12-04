@@ -1,11 +1,3 @@
-# COCL-App
-
-- [x] Dash 환경 구축
-- [x] COCL-PVWatts(생산량) 내용 대시보드에 추가하기  
-- [x] COCL-PM(소비량) 내용 대시보드에 추가하기.
-- [x] 스케쥴링 알고리즘 시각화
-Dashboard that provides comprehensive information on COCL
-
 ## 프로젝트 목표
 Streamlit 혹은 Dash 등의 lib를 이용하여 강의별 탄소발자국 정보( 강의실, 강의명, 현재시간, 전력사용 정보, 탄소 배출 정보 등)와 캠퍼스 옥상에서 생산되는 전력량을 대응하여 표현한 대시보드 앱을 개발합니다.
 이를 통해 캠퍼스 Net-Zero화를 실현하기 위해 현재 건물별 태양광 생산이 가능한 양과, 실제로 각 건물의 강의실에서 소비되는 전력에 대해 비교분석하여 더 효율적으로 강의 시간표를 배치한다.
@@ -15,6 +7,9 @@ Streamlit 혹은 Dash 등의 lib를 이용하여 강의별 탄소발자국 정�
 - 동아대학교 승학캠퍼스 옥상에서 건물별 **태양광 발전량 예측** 시각화
 - 캠퍼스 옥상에서 생산되는 전략과 강의별
 - 누적 탄소발자국 정보 총집계
+
+![image](https://github.com/Prcnsi/COCL-App/assets/86015194/9ef8664a-5ade-4457-83cd-2dbc4bdc4932)
+
 <br><br>
 
 ## 참여 신청 방법
