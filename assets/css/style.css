@@ -1,0 +1,27 @@
+html, body{
+    width: 100%;
+    height: 100%;
+}
+.main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+}
+.footer {
+    background-color: #343a40;  /* dark background */
+    color: #ffffff;  /* white text color */
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer A {
+    color: #ffc107;  /* golden color for links */
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
