@@ -33,53 +33,91 @@ import plotly.graph_objs as go
 
 app = Dash(__name__)
 
-# Pie Chart
-data = {
-    'Categories': ['Category A', 'Category B'],
-    'Values': [80, 20]
-}
+# # Pie Chart
+# data = {
+#     'Categories': ['Category A', 'Category B'],
+#     'Values': [80, 20]
+# }
 
-# Create a pie chart using Plotly Express
-fig_pie = px.pie(data, values='Values', names='Categories', title='Net-Zero 달성률')
+# # Create a pie chart using Plotly Express
+# fig_pie = px.pie(data, values='Values', names='Categories', title='Net-Zero 달성률')
 
+# fig_pie.update_layout(
+#     margin=dict(l=30, r=30, t=30, b=30),
+#     width=340,  # Change width to the desired width
+#     height=300,  # Change height to the desired height
+#     title_x=0.5  # Set the title's x-position to 0.5 (center)
+# )
+
+fig_pie= go.Figure(data = [go.Indicator(
+                mode="gauge+number",
+                value=80,
+                title={'text': "Net-Zero Rate(%)"},
+                domain={'x': [0,1], 'y': [0,1]},
+                gauge={'axis': {'range': [0,100]},
+                        'bar': {'color': 'blue'} 
+                       }
+        )])
 fig_pie.update_layout(
-    margin=dict(l=30, r=30, t=30, b=30),
+    margin=dict(l=40, r=0, t=20, b=20), 
     width=340,  # Change width to the desired width
     height=300,  # Change height to the desired height
-    title_x=0.5  # Set the title's x-position to 0.5 (center)
-)
+    )
 
-# Pie Chart
-data2 = {
-    'Categories': ['Category A', 'Category B'],
-    'Values': [60, 40]
-}
+# Define the Inferno color scale
+colorscale = px.colors.sequential.Agsunset
 
-# Create a pie chart using Plotly Express
-fig_pie2 = px.pie(data2, values='Values', names='Categories', title='평균 탄소 배출량(1PC)')
+fig_pie2= go.Figure(data = [go.Indicator(
+                mode="gauge+number",
+                value=7632,
+                title={'text': "탄소 배출량 (1PC/g)"},
+                domain={'x': [0,1], 'y': [0,1]},
+                gauge={'axis': {'range': [0,10000]},
+                       'bar': {'color': 'blue'}}
+        )])
 
 fig_pie2.update_layout(
-    #paper_bgcolor='lightgray',  # Change 'lightgray' to the desired color
-    margin=dict(l=30, r=30, t=30, b=30),
+    margin=dict(l=40, r=0, t=20, b=20), 
     width=340,  # Change width to the desired width
     height=300,  # Change height to the desired height
-    title_x=0.5  # Set the title's x-position to 0.5 (center)
-)
+    )
+
+
+# # Pie Chart
+# data2 = {
+#     'Categories': ['Category A', 'Category B'],
+#     'Values': [60, 40]
+# }
+
+# # Create a pie chart using Plotly Express
+# fig_pie2 = px.pie(data2, values='Values', names='Categories', title='평균 탄소 배출량(1PC)')
+
+# fig_pie2.update_layout(
+#     #paper_bgcolor='lightgray',  # Change 'lightgray' to the desired color
+#     margin=dict(l=30, r=30, t=30, b=30),
+#     width=340,  # Change width to the desired width
+#     height=300,  # Change height to the desired height
+#     title_x=0.5  # Set the title's x-position to 0.5 (center)
+# )
 
 # line chart
-hours = pd.date_range('2023-01-01', periods=12, freq='H')
+time_intervals = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM',
+                  '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM']
 power_consumed = [15, 14, 15, 16, 18, 20, 21, 22, 20, 18, 17, 16]  # Example values for power consumed
 power_produced = [5, 7, 9, 12, 15, 18, 19, 18, 16, 14, 12, 9]  # Example values for power produced
 
 # Create the line chart using Plotly graph objects
 fig_line = go.Figure()
-fig_line.add_trace(go.Scatter(x=hours, y=power_consumed, mode='lines+markers', name='Sum of Power Consumed'))
-fig_line.add_trace(go.Scatter(x=hours, y=power_produced, mode='lines+markers', name='Amount of Power Produced'))
+fig_line.add_trace(go.Scatter(x=time_intervals, y=power_consumed, mode='lines+markers', name='Sum of Power Consumed'))
+fig_line.add_trace(go.Scatter(x=time_intervals, y=power_produced, mode='lines+markers', name='Amount of Power Produced'))
 
 fig_line.update_layout(
+    margin=dict(l=60, r=10, t=80, b=0), 
     title='2023년도 11월 전력 소모-생산량 총계',
     xaxis_title='Time',
     yaxis_title='Power',
+    width=850,  # Change width to the desired width
+    height=500,  # Change height to the desired height
     legend=dict(
         orientation="h",  # Set the orientation of the legend to 'h' (horizontal)
         yanchor="bottom",  # Anchor the legend to the bottom of the plot
@@ -87,7 +125,9 @@ fig_line.update_layout(
         xanchor="right",  # Anchor the legend to the right side of the plot
         x=1  # Set the legend position to the right side
     ),
-    title_x=0.5  # Set the title's x-position to 0.5 (center)
+    title_x=0.5, # Set the title's x-position to 0.5 (center)
+    title_font_size=20,
+
 )
 
 # stacked bar chart
@@ -104,11 +144,12 @@ fig_stacked_bar = px.bar(data_frame=data, x='Classroom', y='Subjects', color='l'
 
 
 fig_stacked_bar.update_layout(
+    margin=dict(l=60, r=10, t=50, b=0), 
     width=850,  # Change width to the desired width
-    height=550,  # Change height to the desired height
+    height=450,  # Change height to the desired height
     title={
         'text': '강의실별 이론/실습 수업 비중',
-        'x': 0.35,  # Centering the title
+        'x': 0.44,  # Centering the title
         'y': 0.95  # Adjusting title's vertical position
     },
     legend=dict(
@@ -118,6 +159,7 @@ fig_stacked_bar.update_layout(
         xanchor="right",  # Anchor the legend to the right side of the plot
         x=1  # Set the legend position to the right side
     ),
+    title_font_size=20,
 )
 
 
@@ -151,7 +193,8 @@ fig_horiz_bar1.update_layout(
     yaxis_title='Categories',       # Labeling y-axis
     height=500,                     # Setting the height of the chart
     width=450,
-    title_x=0.5  
+    title_x=0.5,
+    title_font_size=20,
 )
 
 time_intervals = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM',
@@ -171,7 +214,6 @@ fig_horiz_bar2 = go.Figure(data=[go.Bar(
         colorscale=colorscale,  # Applying the defined colorscale
         colorbar=dict(title='Color Scale'),  # Adding color scale
     ),
-    
 )])
 
 # Customizing layout
@@ -181,6 +223,7 @@ fig_horiz_bar2.update_layout(
     yaxis_title='Categories',       # Labeling y-axis
     height=450,                     # Setting the height of the chart
     width=450,
+    title_font_size=20,
 )
 
 # last gpu bar-line
@@ -215,7 +258,7 @@ fig_gpu.update_layout(
     title='실습과목에서 GPU에 소모되는 전력',
     xaxis_title='Categories',
     yaxis_title='Values',
-    height=350,                     # Setting the height of the chart
+    height=330,                     # Setting the height of the chart
     width=450,
     legend=dict(
         orientation="h",  # Set the orientation of the legend to 'h' (horizontal)
@@ -253,16 +296,18 @@ app.layout = html.Div(children=[
                 html.Div(
                     dcc.Graph(
                         id='example-pie-chart',  # Provide a unique ID for the graph
-                        figure=fig_pie2  # Pass the Plotly figure to the 'figure' attribute
+                        figure=fig_pie2  # Pass the Plotly figure to the 'figure' attributefig_line
                     ),
                     style={"width": "100%","height": "30%"},
                 ),
+                html.Br(),
+                html.Br(),
                 html.Div(
                     dcc.Graph(
                         id='example-pie-chart',  # Provide a unique ID for the graph
                         figure=fig_gpu  # Pass the Plotly figure to the 'figure' attribute
                     ),
-                    style={"width": "100%","height": "40%"},
+                    style={"width": "100%","height": "d%"},
                 ),
             ],
             className="column1"
@@ -278,6 +323,10 @@ app.layout = html.Div(children=[
                     ),
                     style={"width": "100%","height": "35%","text-align":"center"},
                 ),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
                 html.Br(),
                 html.Br(),
                 html.Div(
