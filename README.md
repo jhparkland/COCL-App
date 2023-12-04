@@ -1,8 +1,5 @@
 # COCL-App
 
-# COCL-PVwatts
-Custom pvwattas API based on NREL PVwatts
-
 - [x] Dash 환경 구축
 - [ ] COCL-PVWatts(생산량) 내용 대시보드에 추가하기  
 - [ ] COCL-PM(소비량) 내용 대시보드에 추가하기.
