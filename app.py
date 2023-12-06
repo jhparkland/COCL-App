@@ -1,3 +1,22 @@
+
+
+    # # Website Main Logo
+    # html.Div(
+    #     children=[
+    #         html.Div(
+    #             children=[
+    #                 html.Img(id='display-image', src=image1_url, style={'width': '50px', 'height': '50px', 'margin-left': '23%','margin-right': '10px'}),
+    #                 "Carbon-Watch",
+    #             ],
+    #             style={"display": "flex", "align-items": "center", "text-align":"center", 'margin-left': '23%'}
+    #         ),
+    #     ],
+    #     className="header"
+    # ),
+
+
+
+
 # Dash의 기본 구조는 app=Dash()와 if __name__은 값 사이에 html 코드를 React의 css-component 형식으로 바인딩하여 구성!
 # Callback은 결국 UseState와 같은 식별 변수로 이를 통해 객체 지향 코드 구현 가능.
 # 한 dropdown에 ID를 설정하고 그 ID에 있는 값(특정 값 선택)이 바뀔 때 마다 Callback 함수가 호출됨. 
@@ -30,24 +49,24 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 import plotly.graph_objs as go
+import os, sys
+
+
+# (11) blugrn_colors = px.colors.diverging.PRGn
+# print(len(blugrn_colors))
+
+# blugrn_colors = px.colors.diverging.PiYG
+# print(len(blugrn_colors))
+
+
 
 app = Dash(__name__)
+# 현재 스크립트 파일의 경로를 가져옵니다.
+current_directory = os.path.dirname(os.path.abspath(__file__))
 
-# # Pie Chart
-# data = {
-#     'Categories': ['Category A', 'Category B'],
-#     'Values': [80, 20]
-# }
-
-# # Create a pie chart using Plotly Express
-# fig_pie = px.pie(data, values='Values', names='Categories', title='Net-Zero 달성률')
-
-# fig_pie.update_layout(
-#     margin=dict(l=30, r=30, t=30, b=30),
-#     width=340,  # Change width to the desired width
-#     height=300,  # Change height to the desired height
-#     title_x=0.5  # Set the title's x-position to 0.5 (center)
-# )
+# 이미지 파일의 절대 경로를 지정합니다.
+image1_url = os.path.join(current_directory, 'Logo.png')
+# image1_url = '../Logo.png'C:\Users\jidoz\Workspace\빅데이터(COCL)\프로젝트\cocl_web\Logo.png
 
 fig_pie= go.Figure(data = [go.Indicator(
                 mode="gauge+number",
@@ -55,7 +74,7 @@ fig_pie= go.Figure(data = [go.Indicator(
                 title={'text': "Net-Zero Rate(%)"},
                 domain={'x': [0,1], 'y': [0,1]},
                 gauge={'axis': {'range': [0,100]},
-                        'bar': {'color': 'blue'} 
+                        'bar': {'color': px.colors.sequential.Tealgrn[2]} 
                        }
         )])
 fig_pie.update_layout(
@@ -73,7 +92,7 @@ fig_pie2= go.Figure(data = [go.Indicator(
                 title={'text': "탄소 배출량 (1PC/g)"},
                 domain={'x': [0,1], 'y': [0,1]},
                 gauge={'axis': {'range': [0,10000]},
-                       'bar': {'color': 'blue'}}
+                       'bar': {'color': px.colors.sequential.YlGn[5]}}
         )])
 
 fig_pie2.update_layout(
@@ -81,24 +100,6 @@ fig_pie2.update_layout(
     width=340,  # Change width to the desired width
     height=300,  # Change height to the desired height
     )
-
-
-# # Pie Chart
-# data2 = {
-#     'Categories': ['Category A', 'Category B'],
-#     'Values': [60, 40]
-# }
-
-# # Create a pie chart using Plotly Express
-# fig_pie2 = px.pie(data2, values='Values', names='Categories', title='평균 탄소 배출량(1PC)')
-
-# fig_pie2.update_layout(
-#     #paper_bgcolor='lightgray',  # Change 'lightgray' to the desired color
-#     margin=dict(l=30, r=30, t=30, b=30),
-#     width=340,  # Change width to the desired width
-#     height=300,  # Change height to the desired height
-#     title_x=0.5  # Set the title's x-position to 0.5 (center)
-# )
 
 # line chart
 time_intervals = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM',
@@ -108,8 +109,8 @@ power_produced = [5, 7, 9, 12, 15, 18, 19, 18, 16, 14, 12, 9]  # Example values 
 
 # Create the line chart using Plotly graph objects
 fig_line = go.Figure()
-fig_line.add_trace(go.Scatter(x=time_intervals, y=power_consumed, mode='lines+markers', name='Sum of Power Consumed'))
-fig_line.add_trace(go.Scatter(x=time_intervals, y=power_produced, mode='lines+markers', name='Amount of Power Produced'))
+fig_line.add_trace(go.Scatter(x=time_intervals, y=power_consumed, mode='lines+markers', name='Sum of Power Consumed', line=dict(color='yellowgreen')))
+fig_line.add_trace(go.Scatter(x=time_intervals, y=power_produced, mode='lines+markers', name='Amount of Power Produced', line=dict(color='seagreen')))
 
 fig_line.update_layout(
     margin=dict(l=60, r=10, t=80, b=0), 
@@ -127,7 +128,7 @@ fig_line.update_layout(
     ),
     title_x=0.5, # Set the title's x-position to 0.5 (center)
     title_font_size=20,
-
+    plot_bgcolor='ghostwhite'
 )
 
 # stacked bar chart
@@ -139,8 +140,18 @@ data = {
 }
 
 # Create Stacked bar chart using Plotly Express
-fig_stacked_bar = px.bar(data_frame=data, x='Classroom', y='Subjects', color='l', barmode='stack',
-                        width=1000, height=600)
+fig_stacked_bar = px.bar(data_frame=data, 
+                         x='Classroom',
+                         y='Subjects',
+                         color='l',
+                         barmode='stack',
+                         width=1000, 
+                         height=600,
+                        color_discrete_map={
+                            '딥러닝 활용 실습 과목':  px.colors.diverging.PRGn[8],
+                            '이론 과목': px.colors.diverging.PiYG[7]
+                        }
+                         )
 
 
 fig_stacked_bar.update_layout(
@@ -168,12 +179,7 @@ time_intervals = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:0
 y_values = [23, 12, 3, 23, 56, 23, 4, 6, 2, 2, 1, 6]
 
 # Define a color scale using HEX codes for the gradient
-colorscale = [
-    [0, '#FFC300'],  # Start color
-    [0.5, '#FF5733'],  # Middle color
-    [1, '#C70039']   # End color
-]
-
+colorscale = px.colors.sequential.Blugrn
 # Creating the horizontal bar chart with a color gradient
 fig_horiz_bar1 = go.Figure(data=[go.Bar(
     y=time_intervals,  # Assigning categories to the y-axis
@@ -202,7 +208,7 @@ time_intervals = ['9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:0
 y_values = [23, 12, 3, 23, 56, 23, 4, 6, 2, 2, 1, 6]
 
 # Define the Inferno color scale
-colorscale = px.colors.sequential.Agsunset
+colorscale = px.colors.sequential.Mint
 
 # Creating the horizontal bar chart with Inferno color scale
 fig_horiz_bar2 = go.Figure(data=[go.Bar(
@@ -236,7 +242,8 @@ values_line = [7,14,15,23,27,23,14,11,4,3]
 trace_bar = go.Bar(
     x=times,
     y=values_bar,
-    name='Bar Chart'
+    name='Bar Chart',
+    marker=dict(color=px.colors.sequential.Aggrnyl)  
 )
 
 # Create a line trace
@@ -244,7 +251,8 @@ trace_line = go.Scatter(
     x=times,
     y=values_line,
     mode='lines+markers',
-    name='Line Chart'
+    name='Line Chart',
+    line=dict(color=px.colors.sequential.Blugrn[3])
 )
 
 # Create the figure with both traces
@@ -272,27 +280,32 @@ fig_gpu.update_layout(
 
 
 
-app.layout = html.Div(children=[
-    
+app.layout = html.Div(\
+    children=[
+    # html.Div(
+    #     children="Carbon-Watch",
+    #     className="header",
+    # ),
     # Website Main Logo
     html.Div(
-        children="Carbon-Watch",
-        className="header",
+        children=[
+            html.Div(
+                children=[
+                    html.Img(id='display-image', src=image1_url, style={'width': '50px', 'height': '50px', 'margin-left': '23%','margin-right': '10px'}),
+                    "Carbon-Watch",
+                ],
+                style={"display": "flex", "align-items": "center", "text-align":"center", 'margin-left': '23%'}
+            ),
+        ],
+        className="header"
     ),
-
     html.Div(
         children=[
             # 1st-Column(25%)
             html.Div(
                 children=[
                 html.Br(),
-                html.Div(
-                    dcc.Graph(
-                        id='example-pie-chart',  # Provide a unique ID for the graph
-                        figure=fig_pie  # Pass the Plotly figure to the 'figure' attribute
-                    ),
-                    style={"width": "100%","height": "30%"},
-                ),
+
                 html.Div(
                     dcc.Graph(
                         id='example-pie-chart',  # Provide a unique ID for the graph
@@ -370,6 +383,7 @@ app.layout = html.Div(children=[
 
 # 전체에 대한 CSS
 ], className="mainpage")
+
 
 
 if __name__ == '__main__':
