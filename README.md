@@ -11,8 +11,3 @@ Streamlit 혹은 Dash 등의 lib를 이용하여 강의별 탄소발자국 정�
 ![image](https://github.com/Prcnsi/COCL-App/assets/86015194/9ef8664a-5ade-4457-83cd-2dbc4bdc4932)
 
 <br><br>
-
-## 참여 신청 방법
-1. issues 탭 클릭
-2. new issues 클릭 후 가입신청 템플릿 선택
-3. 양식에 맞춰 작성
