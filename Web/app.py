@@ -1,5 +1,3 @@
-
-
     # # Website Main Logo
     # html.Div(
     #     children=[
@@ -61,13 +59,7 @@ import os, sys
 
 
 app = Dash(__name__)
-# 현재 스크립트 파일의 경로를 가져옵니다.
-current_directory = os.path.dirname(os.path.abspath(__file__))
-
-# 이미지 파일의 절대 경로를 지정합니다.
-image1_url = os.path.join(current_directory, 'Logo.png')
-# image1_url = '../Logo.png'C:\Users\jidoz\Workspace\빅데이터(COCL)\프로젝트\cocl_web\Logo.png
-
+logo_path = "..\\assets\\img\\Logo.png"
 fig_pie= go.Figure(data = [go.Indicator(
                 mode="gauge+number",
                 value=80,
@@ -282,16 +274,11 @@ fig_gpu.update_layout(
 
 app.layout = html.Div(\
     children=[
-    # html.Div(
-    #     children="Carbon-Watch",
-    #     className="header",
-    # ),
-    # Website Main Logo
     html.Div(
         children=[
             html.Div(
                 children=[
-                    html.Img(id='display-image', src=image1_url, style={'width': '50px', 'height': '50px', 'margin-left': '23%','margin-right': '10px'}),
+                    html.Img(id='display-image', src=logo_path, style={'width': '50px', 'height': '50px', 'margin-left': '23%','margin-right': '10px'}),
                     "Carbon-Watch",
                 ],
                 style={"display": "flex", "align-items": "center", "text-align":"center", 'margin-left': '23%'}
@@ -305,7 +292,13 @@ app.layout = html.Div(\
             html.Div(
                 children=[
                 html.Br(),
-
+                html.Div(
+                    dcc.Graph(
+                        id='example-pie-chart',  # Provide a unique ID for the graph
+                        figure=fig_pie  # Pass the Plotly figure to the 'figure' attributefig_line
+                    ),
+                    style={"width": "100%","height": "30%"},
+                ),
                 html.Div(
                     dcc.Graph(
                         id='example-pie-chart',  # Provide a unique ID for the graph
